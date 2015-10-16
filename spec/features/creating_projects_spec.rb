@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Users can create new porjects" do 
+RSpec.feature "Users can create new projects" do 
 	scenario "with valid attributes" do 
 		visit "/"
 		click_link "New Project"
@@ -10,4 +10,4 @@ RSpec.feature "Users can create new porjects" do
 
 		expect(page).to have_content "Project has been created"
 	end
-end
+end 	
