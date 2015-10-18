@@ -9,3 +9,12 @@
 		<li><%= link_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, class:"delete" %></li>
 	</ul>
 </header>
+
+<ul id="stubs">
+	<% @project.stubs.each do |stub| %>
+		<li>
+			#<%= stub.id %> - 
+			<%= link_to stub.name, [@project, stub] %>
+		</li>
+	<% end %>
+</ul>
