@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Users can create a new stubs" do 
-	before do 
+	let(:user) { FactoryGirl.create(:user) }
+
+	before do
+		login_as(user) 
 		project = FactoryGirl.create(:project, name: "Internet Explorer")
 		visit project_path(project)
 		click_link "New Stub" 
@@ -13,6 +16,9 @@ RSpec.feature "Users can create a new stubs" do
 		click_button "Create Stub"
 
 		expect(page).to have_content "Stub has been created" 
+		within("#stub") do 
+			expect(page).to have_content "Author: #{user.email}"
+		end
 	end
 
 	scenario "when providing invalid attributes" do 

@@ -1,8 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "users can delete stubs" do 
+	let(:author) { FactoryGirl.create(:user) }
 	let(:project) { FactoryGirl.create(:project) } 
-	let(:stub) { FactoryGirl.create(:stub, project: project) }
+	let(:stub) do 
+	  FactoryGirl.create(:stub, project: project, author: author) 
+	end
 
 	before do 
 		visit project_stub_path(project, stub)

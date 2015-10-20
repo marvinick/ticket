@@ -11,6 +11,16 @@
 			<li><%= link_to "Delete Stub", [@project, @stub], method: :delete, class: "delete" %></li>
 		</ul>
 	</header>
-
+	<table id="attributes">
+		<tr>
+			<th>Author:</th>
+			<td><%= @stub.author.email %></td>
+		</tr>
+		<tr>
+			<th>Created:</th>
+			<td><%= time_ago_in_words(@stub.created_at) %> ago </td>
+		</tr>
+	</table>
 	<%= simple_format(@stub.desription) %>
+
 </div>

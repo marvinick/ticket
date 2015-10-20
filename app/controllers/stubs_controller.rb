@@ -8,7 +8,8 @@ class StubsController < ApplicationController
 
 	def create
 		@stub = @project.stubs.build(stub_params)
-
+		@stub.author = current_user
+		
 		if @stub.save
 			flash[:notice] = "Stub has been created"
 			redirect_to [@project, @stub]
