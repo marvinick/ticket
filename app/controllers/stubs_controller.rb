@@ -20,6 +20,24 @@ class StubsController < ApplicationController
 
 	def show; end
 
+	def edit; end
+
+	def update
+		if @stub.update(stub_params)
+			flash[:notice] = "Stub has been updated"
+			redirect_to [@project, @ticket]
+		else
+			flash.now[:alert] = "Stub has not been updated"
+			render "edit"
+		end
+	end
+
+	def destroy 
+		@stub.destroy
+		flash[:notice] = "Stub has been deleted"
+		redirect_to @project 
+	end
+
 	private
 
 	def set_stub

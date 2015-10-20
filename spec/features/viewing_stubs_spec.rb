@@ -24,4 +24,4 @@ RSpec.feature "Users can view stubs" do
 
 		expect(page).to have_content "Gradients! Starbucks! Oh my!"
 	end
-end
+end 

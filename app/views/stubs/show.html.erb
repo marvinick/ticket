@@ -2,9 +2,14 @@
 	<header>
 		<h1><%= @project.name %></h1>
 	</header>
-
+ 
 	<header>
-		<h2><%= @stub.name %></h2>
+		<h2><%= @stub.name %></h2> 
+
+		<ul class="actions">
+			<li><%= link_to "Edit Stub", [:edit, @project, @stub], class: "edit" %></li>
+			<li><%= link_to "Delete Stub", [@project, @stub], method: :delete, class: "delete" %></li>
+		</ul>
 	</header>
 
 	<%= simple_format(@stub.desription) %>
