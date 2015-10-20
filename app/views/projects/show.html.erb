@@ -6,7 +6,7 @@
 	<ul class="actions"> 
 		<li><%= link_to "New Stub", new_project_stub_path(@project), class: "new" %></li>
 		<li><%= link_to "Edit Project", edit_project_path(@project), class:"edit" %>
-		<li><%= link_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, class:"delete" %></li>
+		<li><%= link_to "Delete Project", admin_project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, class:"delete" %></li>
 	</ul>
 </header>
 
