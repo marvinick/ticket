@@ -25,7 +25,7 @@ RSpec.feature "Users can edit existing stub" do
 			expect(page).not_to have_content stub.name 
 		end
 	end
- 
+ 	
 	scenario "with invalid attributes" do 
 		fill_in "Name", with: ""
 		click_button "Update Stub"
