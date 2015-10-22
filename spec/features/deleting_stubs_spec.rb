@@ -8,6 +8,8 @@ RSpec.feature "users can delete stubs" do
 	end
 
 	before do 
+		login_as(author)
+		assign_role!(author, :viewer, project)
 		visit project_stub_path(project, stub)
 	end
 

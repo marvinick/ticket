@@ -3,12 +3,17 @@ require 'rails_helper'
 RSpec.feature "Users can view stubs" do 
 	before do 
 		author = FactoryGirl.create(:user)
+
 		sublime = FactoryGirl.create(:project, name: "Sublime Text 3" )
+		assign_role!(author, :viewer, sublime)
+		
 		FactoryGirl.create(:stub, project: sublime, author: author, name: 'Make it shiny', desription: "Gradients! Starbucks! Oh my!")
 
 		ie = FactoryGirl.create(:project, name: "Internet Explorer")
+		assign_role!(author, :viewer, ie)
 		FactoryGirl.create(:stub, project: ie, author: author, name: "Standards compliance", desription: "Isn't a joke")
 
+		login_as(author)
 		visit "/"
 	end
 
