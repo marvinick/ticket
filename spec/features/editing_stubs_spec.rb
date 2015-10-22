@@ -5,9 +5,11 @@ RSpec.feature "Users can edit existing stub" do
 	let(:project) { FactoryGirl.create(:project) }
 	let(:stub) do 
 	  FactoryGirl.create(:stub, project: project, author: author) 
-	end
+	end 
 
 	before do 
+		login_as(author)
+		assign_role!(author, :viewer, project)
 		visit project_stub_path(project, stub)
 		click_link "Edit Stub"
 	end
