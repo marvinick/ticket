@@ -19,7 +19,9 @@ class StubsController < ApplicationController
 		end
 	end 
 
-	def show; end
+	def show
+		authorize @stub, :show?
+	end
 
 	def edit; end
 
