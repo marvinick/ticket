@@ -4,11 +4,13 @@ class StubsController < ApplicationController
 
 	def new
 		@stub = @project.stubs.build
+		authorize @stub, :create?
 	end
 
 	def create
 		@stub = @project.stubs.build(stub_params)
 		@stub.author = current_user
+		authorize @stub, :create?
 		
 		if @stub.save
 			flash[:notice] = "Stub has been created"
