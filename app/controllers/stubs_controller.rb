@@ -25,9 +25,13 @@ class StubsController < ApplicationController
 		authorize @stub, :show?
 	end
 
-	def edit; end
+	def edit 
+		authorize @stub, :update?
+	end
 
 	def update
+		authorize @stub, :update?
+		
 		if @stub.update(stub_params)
 			flash[:notice] = "Stub has been updated"
 			redirect_to [@project, @ticket]

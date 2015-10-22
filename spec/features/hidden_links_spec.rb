@@ -4,13 +4,15 @@ RSpec.feature "Users can only see the appropriate links" do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:admin) { FactoryGirl.create(:user, :admin) }
 	let(:project) { FactoryGirl.create(:project) }
+	let(:stub) do
+		FactoryGirl.create(:stub, project: project, author: user)
+	end
 
 	context "anonymous users" do 
 		scenario "cannot see the New Project link" do
 			visit "/"
 			expect(page).not_to have_link "New Project" 
 		end
-
 	end
 
 	context "non-admin users (project viewers)" do 
@@ -38,6 +40,11 @@ RSpec.feature "Users can only see the appropriate links" do
 			visit project_path(project)
 			expect(page).not_to have_link "New Stub"
 		end
+
+		scenario "cannot see the Edit Stub link" do
+			visit project_stub_path(project, stub)
+			expect(page).not_to have_link "Edit Stub"
+		end
 	end
 
 	context "admin users" do 
@@ -61,6 +68,11 @@ RSpec.feature "Users can only see the appropriate links" do
 		scenario "can see the new stub link" do 
 			visit project_path(project)
 			expect(page).to have_link "New Stub"
+		end
+
+		scenario "can see the Edit Stub link" do 
+			visit project_stub_path(project, stub)
+			expect(page).to have_link "Edit Stub"
 		end
 	end
 

@@ -8,8 +8,8 @@ RSpec.feature "Users can edit existing stub" do
 	end 
 
 	before do 
+		assign_role!(author, :editor, project)
 		login_as(author)
-		assign_role!(author, :viewer, project)
 		visit project_stub_path(project, stub)
 		click_link "Edit Stub"
 	end
