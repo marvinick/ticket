@@ -10,7 +10,9 @@
 			<% if policy(@stub).update? %>
 				<li><%= link_to "Edit Stub", [:edit, @project, @stub], class: "edit" %></li>
 			<% end %>
-			<li><%= link_to "Delete Stub", [@project, @stub], method: :delete, class: "delete" %></li>
+			<% if policy(@stub).destroy? %>
+				<li><%= link_to "Delete Stub", [@project, @stub], method: :delete, class: "delete" %></li>
+			<% end %>
 		</ul>
 	</header>
 	<table id="attributes">

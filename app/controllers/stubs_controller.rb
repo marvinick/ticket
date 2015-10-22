@@ -42,6 +42,7 @@ class StubsController < ApplicationController
 	end
 
 	def destroy 
+		authorize @stub, :destroy?
 		@stub.destroy
 		flash[:notice] = "Stub has been deleted"
 		redirect_to @project 

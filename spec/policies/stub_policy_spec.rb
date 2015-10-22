@@ -14,6 +14,7 @@ RSpec.describe StubPolicy do
       it { should_not permit_action :show }
       it { should_not permit_action :create }
       it { should_not permit_action :update } 
+      it { should_not permit_action :destroy }
     end
 
     context "for viewers of the projects" do 
@@ -21,6 +22,7 @@ RSpec.describe StubPolicy do
       it { should permit_action :show }
       it { should_not permit_action :create }
       it { should_not permit_action :update }
+      it { should_not permit_action :destroy }
     end
 
     context "for editors of the project" do 
@@ -28,6 +30,7 @@ RSpec.describe StubPolicy do
         it { should permit_action :show }
         it { should permit_action :create }
         it { should_not permit_action :update }
+        it { should_not permit_action :destroy }
 
       context "when the editor created the stub" do 
         before { stub.author = user } 
@@ -40,6 +43,7 @@ RSpec.describe StubPolicy do
       it { should permit_action :show}
       it { should permit_action :create }
       it { should permit_action :update }
+      it { should permit_action :destroy }
     end
 
     context "managers of other projects" do 
@@ -47,9 +51,10 @@ RSpec.describe StubPolicy do
         assign_role!(user, :manager, FactoryGirl.create(:project) )
       end
 
-      it { should_not permit_action :show}
+      it { should_not permit_action :show }
       it { should_not permit_action :create }
       it { should_not permit_action :update}
+      it { should_not permit_action :destroy }
     end
 
     context "for administrators" do 
@@ -57,6 +62,7 @@ RSpec.describe StubPolicy do
       it { should permit_action :show }
       it { should permit_action :create }
       it { should permit_action :update}
+      it { should permit_action :destroy }
     end
   end
 end
