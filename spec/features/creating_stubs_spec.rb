@@ -38,5 +38,18 @@ RSpec.feature "Users can create a new stubs" do
 		expect(page).to have_content "Stub has not been created"
 		expect(page).to have_content "Desription is too short"
 	end
+
+	scenario "with an attachment" do 
+		fill_in "Name", with: "Add documentation for blink tag"
+		fill_in "Desription", with: "The blink tag has a speed attribute"
+		attach_file "File", "spec/fixtures/speed.txt"
+		click_button "Create Stub"
+
+		expect(page).to have_content "Stub has been created."
+
+		within("#stub .attachment") do 
+			expect(page).to have_content "speed.txt"
+		end
+	end
 end
  

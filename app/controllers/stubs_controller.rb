@@ -13,10 +13,10 @@ class StubsController < ApplicationController
 		authorize @stub, :create?
 		
 		if @stub.save
-			flash[:notice] = "Stub has been created"
+			flash[:notice] = "Stub has been created."
 			redirect_to [@project, @stub]
 		else
-			flash.now[:alert] = "Stub has not been created"
+			flash.now[:alert] = "Stub has not been created."
 			render "new"
 		end
 	end 
@@ -55,7 +55,7 @@ class StubsController < ApplicationController
 	end
 
 	def stub_params
-		params.require(:stub).permit(:name, :desription)
+		params.require(:stub).permit(:name, :desription, :attachment)
 	end
 
 	def set_project
