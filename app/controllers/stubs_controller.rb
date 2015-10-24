@@ -5,6 +5,7 @@ class StubsController < ApplicationController
 	def new
 		@stub = @project.stubs.build
 		authorize @stub, :create?
+		3.times { @stub.attachments.build }
 	end
 
 	def create
@@ -55,7 +56,7 @@ class StubsController < ApplicationController
 	end
 
 	def stub_params
-		params.require(:stub).permit(:name, :desription, :attachment, :attachment_cache)
+		params.require(:stub).permit(:name, :desription, attachments_attributes: [:file, :file_cache])
 	end
 
 	def set_project

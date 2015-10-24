@@ -27,13 +27,15 @@
 	</table>
 	<%= simple_format(@stub.desription) %>
 
-	<% if @stub.attachment.present? %>
-		<h4>Attachment</h4>
-		<div class="attachment">
-			<p>
-				<%= link_to File.basename(@stub.attachment.url), @stub.attachment.url %>
-				(<%= number_to_human_size(@stub.attachment.size) %>)
-			</p>
+	<% if @stub.attachments.any? %>
+		<h4>Attachments</h4>
+		<div class="attachments">
+			<% @stub.attachments.each do |attachment| %>
+				<p>
+					<%= link_to File.basename(attachment.file.url), attachment.file.url %>
+					(<%= number_to_human_size(attachment.file.size) %>)
+				</p>
+			<% end %>
 		</div>
 	<% end %>
 </div>
