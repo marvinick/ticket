@@ -19,11 +19,8 @@ RSpec.feature "Users can edit existing stub" do
 		click_button "Update Stub"
 
 		expect(page).to have_content "Stub has been updated"
-
-		within('#stub h2') do 
-			expect(page).to have_content "Make it really shiny!"
-			expect(page).not_to have_content stub.name 
-		end
+ 		expect(page).to have_content "Make it really shiny!"
+		expect(page).not_to have_content stub.name  
 	end
  	
 	scenario "with invalid attributes" do 

@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   	resources :stubs
   end
 
+  resources :attachments, only: [:show]
+
 end
