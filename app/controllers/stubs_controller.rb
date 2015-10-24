@@ -55,7 +55,7 @@ class StubsController < ApplicationController
 	end
 
 	def stub_params
-		params.require(:stub).permit(:name, :desription, :attachment)
+		params.require(:stub).permit(:name, :desription, :attachment, :attachment_cache)
 	end
 
 	def set_project

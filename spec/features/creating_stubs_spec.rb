@@ -51,5 +51,17 @@ RSpec.feature "Users can create a new stubs" do
 			expect(page).to have_content "speed.txt"
 		end
 	end
+
+	scenario "persisting file uploads accross form displays" do 
+		attach_file "File", "spec/fixtures/speed.txt"
+		click_button "Create Stub"
+
+		fill_in "Name", with: "Add documentation for blink tag"
+		fill_in "Desription", with: "The blink tag has a speed attribute"
+		click_button "Create Stub"
+		within("#stub .attachment") do 
+			expect(page).to have_content "speed.txt"
+		end
+	end
 end
  
