@@ -1,0 +1,8 @@
+<header>
+	<h3>New Comments</h3>
+</header>
+
+<%= simple_form_for [stub, comment] do |f| %>
+	<%= f.input :text %>
+	<%= f.submit class: "btn btn-primary" %>
+<% end %>
