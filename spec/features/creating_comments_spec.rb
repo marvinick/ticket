@@ -17,7 +17,7 @@ RSpec.feature "Users can comment on stubs" do
 
 		expect(page).to have_content "Comment has been created."
 		within("#comments") do 
-			expect(page).to have_content "Added a comment."
+			expect(page).to have_content "Added a comment!"
 		end
 	end
 

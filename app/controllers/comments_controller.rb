@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 		else
 			flash.now[:aler] = "Comment has not been created."
 			@project = @stub.project
-			render "stub/show"
+			render "stubs/show"
 		end
 	end
 

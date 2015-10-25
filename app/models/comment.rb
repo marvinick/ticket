@@ -5,4 +5,8 @@ class Comment < ActiveRecord::Base
   validates_presence_of :text
 
   belongs_to :author, class_name: "User"
+
+  delegate :project, to: :stub
+
+  scope :persisted, lambda { where.not(id: nil) }
 end
