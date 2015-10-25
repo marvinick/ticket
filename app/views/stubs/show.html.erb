@@ -51,4 +51,6 @@
 		<p>There are no comments for this stub.</p>
 	<% end %>
 </div>
-<%= render "comments/form", stub: @stub, comment: @comment %>
+<% if policy(@comment).create? %>
+	<%= render "comments/form", stub: @stub, comment: @comment %>
+<% end %>
