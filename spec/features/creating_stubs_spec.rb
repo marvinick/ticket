@@ -64,14 +64,14 @@ RSpec.feature "Users can create a new stubs" do
 		end
 	end
 
-	scenario "attaching multiple attaachments" do 
+	scenario "with multiple attaachments", js: true do 
 		fill_in "Name", with: "Add documentation for blink tag"
 		fill_in "Desription", with: "The blink tag has a speed attribute"
 
 		attach_file "File #1", Rails.root.join("spec/fixtures/speed.txt")
-		attach_file "File #2", Rails.root.join("spec/fixtures/spin.txt")
-		attach_file "File #3", Rails.root.join("spec/fixtures/gradient.txt")
+		click_link "Add another file" 
 
+		attach_file "File #2", Rails.root.join("spec/fixtures/spin.txt")
 		click_button "Create Stub"
 
 		expect(page).to have_content "Stub has been created."
@@ -79,7 +79,6 @@ RSpec.feature "Users can create a new stubs" do
 		within("#stub .attachments") do 
 			expect(page).to have_content "speed.txt"
 			expect(page).to have_content "spin.txt"
-			expect(page).to have_content "gradient.txt"
 		end
 	end
  end

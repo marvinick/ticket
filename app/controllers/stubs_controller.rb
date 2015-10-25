@@ -5,7 +5,7 @@ class StubsController < ApplicationController
 	def new
 		@stub = @project.stubs.build
 		authorize @stub, :create?
-		3.times { @stub.attachments.build }
+	  @stub.attachments.build 
 	end
 
 	def create
