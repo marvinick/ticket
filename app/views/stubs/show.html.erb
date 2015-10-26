@@ -24,7 +24,14 @@
 			<th>Created:</th>
 			<td><%= time_ago_in_words(@stub.created_at) %> ago </td>
 		</tr>
+		<% if @stub.state.present? %>
+		<tr>
+			<th>State : </th>
+			<td><%= render @stub.state %></td>
+		</tr>
+		<% end %>
 	</table>
+
 	<%= simple_format(@stub.desription) %>
 
 	<% if @stub.attachments.any? %>

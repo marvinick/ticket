@@ -29,14 +29,16 @@ RSpec.feature "Users can comment on stubs" do
 	end
 
 	scenario "when changing a stub's state" do 
+		FactoryGirl.create(:state, name: "Open")
 		visit project_stub_path(project, stub)
 		fill_in "Text", with: "This is a real issue"
 		select "Open", from: "State"
-		click_buttom "Create Comment"
+		click_button "Create Comment"
 
 		expect(page).to have_content "Comment has been created."
 		within("#stub .state") do 
 			expect(page).to have_content "Open"
 		end
 	end
+
 end

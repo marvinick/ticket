@@ -10,4 +10,13 @@ class Comment < ActiveRecord::Base
   delegate :project, to: :stub
 
   scope :persisted, lambda { where.not(id: nil) }
+
+  after_create :set_stub_state
+
+  private 
+
+  def set_stub_state 
+  	stub.state = state 
+  	stub.save!
+  end
 end
