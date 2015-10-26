@@ -27,4 +27,16 @@ RSpec.feature "Users can comment on stubs" do
 
 		expect(page).to have_content "Comment has not been created."
 	end
+
+	scenario "when changing a stub's state" do 
+		visit project_stub_path(project, stub)
+		fill_in "Text", with: "This is a real issue"
+		select "Open", from: "State"
+		click_buttom "Create Comment"
+
+		expect(page).to have_content "Comment has been created."
+		within("#stub .state") do 
+			expect(page).to have_content "Open"
+		end
+	end
 end

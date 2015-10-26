@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :stub
   belongs_to :author
+  belongs_to :state
 
   validates_presence_of :text
 
