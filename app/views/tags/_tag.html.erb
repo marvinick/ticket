@@ -1,4 +1,6 @@
 <div class="tag">
-	<%= link_to "<span></span>".html_safe, "#", class: "remove", title: "remove" %>
+	<% if policy(stub).tag? %>
+		<%= link_to "<span>X</span>".html_safe, remove_stub_tag_path(stub, tag), method: :delete, remote: true, class: "remove", title: "remove" %>
+	<% end %>
 	<%= tag.name %>
 </div>

@@ -34,7 +34,7 @@
 		<% if @stub.tags.any? %>
 			<tr id="tags">
 				<th>Tags:</th>
-				<td><%= render @stub.tags %></td>
+				<td><%= render @stub.tags, stub: @stub %></td>
 			</tr>
 		<% end %>
 	</table>
