@@ -21,5 +21,18 @@ RSpec.describe CommentsController, type: :controller do
 			expect(stub.state).to be_nil
 		end
 	end
+
+	context "a user without permission to tag a stub" do 
+		before do 
+			assign_role!(user, :editor, project) 
+			sign_in user
+		end
+
+		it "cannot tag a stub when creating a comment" do 
+			post :create, { comment: { text: "Tag!", tag_names: "one two" }, stub_id: stub.id }
+			stub.reload
+			expect(stub.tags).to be_empty
+		end
+	end
 end
 

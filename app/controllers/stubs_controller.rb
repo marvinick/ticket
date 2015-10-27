@@ -9,7 +9,14 @@ class StubsController < ApplicationController
 	end
 
 	def create
-		@stub = @project.stubs.build(stub_params)
+		@stub = @project.stubs.new
+
+		whitelisted_params = stub_params
+		unless policy(@stub).tag?
+			whitelisted_params.delete(:tag_names)
+		end
+
+		@stub.attributes = whitelisted_params
 		@stub.author = current_user
 		authorize @stub, :create?
 		
