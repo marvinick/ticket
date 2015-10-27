@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :stub
   belongs_to :author
   belongs_to :state
+  belongs_to :previous_state, class_name: "State"
 
   validates_presence_of :text
 
@@ -11,9 +12,14 @@ class Comment < ActiveRecord::Base
 
   scope :persisted, lambda { where.not(id: nil) }
 
+  before_create :set_previous_state
   after_create :set_stub_state
 
   private 
+
+  def set_previous_state 
+    self.previous_state = stub.state
+  end
 
   def set_stub_state 
   	stub.state = state 

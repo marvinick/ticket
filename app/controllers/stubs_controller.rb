@@ -24,7 +24,7 @@ class StubsController < ApplicationController
 
 	def show
 		authorize @stub, :show?
-		@comment = @stub.comments.build
+		@comment = @stub.comments.build(state_id: @stub.state_id)
 	end
 
 	def edit 
