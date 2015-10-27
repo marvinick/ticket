@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
   belongs_to :state
   belongs_to :previous_state, class_name: "State"
 
+  attr_accessor :tag_names
+
   validates_presence_of :text
 
   belongs_to :author, class_name: "User"
@@ -14,6 +16,7 @@ class Comment < ActiveRecord::Base
 
   before_create :set_previous_state
   after_create :set_stub_state
+  after_create :associate_tags_with_stub
 
   private 
 
@@ -24,5 +27,13 @@ class Comment < ActiveRecord::Base
   def set_stub_state 
   	stub.state = state 
   	stub.save!
+  end
+
+  def associate_tags_with_stub 
+    if tag_names
+      tag_names.split.each do |name| 
+        stub.tags << Tag.find_or_create_by(name: name)
+      end
+    end
   end
 end
