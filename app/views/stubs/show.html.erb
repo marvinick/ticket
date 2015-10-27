@@ -15,6 +15,7 @@
 			<% end %>
 		</ul>
 	</header>
+
 	<table id="attributes">
 		<tr>
 			<th>Author:</th>
@@ -29,6 +30,12 @@
 			<th>State : </th>
 			<td><%= render @stub.state %></td>
 		</tr>
+		<% end %>
+		<% if @stub.tags.any? %>
+			<tr id="tags">
+				<th>Tags:</th>
+				<td><%= render @stub.tags %></td>
+			</tr>
 		<% end %>
 	</table>
 

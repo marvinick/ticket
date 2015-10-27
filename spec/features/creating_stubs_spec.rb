@@ -83,5 +83,18 @@ RSpec.feature "Users can create a new stubs" do
 			expect(page).to have_content "spin.txt"
 		end
 	end
- end
+
+	scenario "with associated tags" do 
+		fill_in "Name", with: "Non-standards compliance"
+		fill_in "Desription", with: "My pages are ugly"
+		fill_in "Tags", with: "browser visual"
+		click_button "Create Stub"
+
+		expect(page).to have_content "Stub has been created."
+		# within("#stub #tags") do 
+			expect(page).to have_content "browser"
+			expect(page).to have_content "visual"
+		# end
+	end
+end
  
