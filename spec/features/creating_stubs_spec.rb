@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Users can create a new stubs" do 
-	let(:user) { FactoryGirl.create(:user) }
+	let!(:state) { FactoryGirl.create :state, name: "New", default: true}
+	let!(:user) { FactoryGirl.create(:user) }
 
 	before do
 		login_as(user) 
@@ -18,6 +19,7 @@ RSpec.feature "Users can create a new stubs" do
 		click_button "Create Stub"
 
 		expect(page).to have_content "Stub has been created" 
+		# expect(page).to have_content "State: New"
 		within("#stub") do 
 			expect(page).to have_content "Author: #{user.email}"
 		end

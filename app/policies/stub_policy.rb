@@ -20,4 +20,8 @@ class StubPolicy < ApplicationPolicy
   def destroy?
     user.try(:admin) || record.project.has_manager?(user)
   end
+
+  def change_state?
+    destroy?
+  end
 end

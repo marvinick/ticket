@@ -15,6 +15,7 @@ RSpec.describe StubPolicy do
       it { should_not permit_action :create }
       it { should_not permit_action :update } 
       it { should_not permit_action :destroy }
+      it { should_not permit_action :change_state }
     end
 
     context "for viewers of the projects" do 
@@ -23,6 +24,7 @@ RSpec.describe StubPolicy do
       it { should_not permit_action :create }
       it { should_not permit_action :update }
       it { should_not permit_action :destroy }
+      it { should_not permit_action :change_state }
     end
 
     context "for editors of the project" do 
@@ -31,7 +33,7 @@ RSpec.describe StubPolicy do
         it { should permit_action :create }
         it { should_not permit_action :update }
         it { should_not permit_action :destroy }
-
+        it { should_not permit_action :change_state }
       context "when the editor created the stub" do 
         before { stub.author = user } 
         it { should permit_action :update }
@@ -44,6 +46,7 @@ RSpec.describe StubPolicy do
       it { should permit_action :create }
       it { should permit_action :update }
       it { should permit_action :destroy }
+      it { should permit_action :change_state }
     end
 
     context "managers of other projects" do 
@@ -55,6 +58,7 @@ RSpec.describe StubPolicy do
       it { should_not permit_action :create }
       it { should_not permit_action :update}
       it { should_not permit_action :destroy }
+      it { should_not permit_action :change_state }
     end
 
     context "for administrators" do 
@@ -63,6 +67,7 @@ RSpec.describe StubPolicy do
       it { should permit_action :create }
       it { should permit_action :update}
       it { should permit_action :destroy }
+      it { should permit_action :change_state }
     end
   end
 end

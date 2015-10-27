@@ -45,4 +45,10 @@ RSpec.feature "Users can comment on stubs" do
 		end
 	end
 
+	scenario "but cannot change the state without permission" do 
+		assign_role!(user, :editor, project)
+		visit project_stub_path(project, stub)
+
+		expect(page).not_to have_select "State"
+	end
 end
