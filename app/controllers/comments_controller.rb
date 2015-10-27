@@ -2,7 +2,13 @@ class CommentsController < ApplicationController
 	before_action :set_stub
 
 	def create 
-		@comment = @stub.comments.build(comment_params)
+		whitelisted_params = comment_params
+
+		unless policy(@stub).change_state?
+			whitelisted_params.delete(:state_id)
+		end
+
+		@comment = @stub.comments.build(whitelisted_params)
 		@comment.author = current_user
 		authorize @comment, :create?
 	
