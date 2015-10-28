@@ -13,6 +13,11 @@ class Stub < ActiveRecord::Base
 
   before_create :assign_default_state
 
+  #comes from searcher gem
+  searcher do 
+    label :tag, from: :tags, field: "name"
+  end
+
   def tag_names=(names)
     @tag_names = names
     names.split.each do |name| 

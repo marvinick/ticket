@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   root "projects#index"
 
   resources :projects, only: [:index, :show, :edit, :update] do 
-  	resources :stubs
+  	resources :stubs do 
+      collection do 
+        get :search
+      end
+    end 
   end
 
   resources :stubs, only: [] do 

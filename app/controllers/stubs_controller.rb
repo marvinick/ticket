@@ -34,6 +34,16 @@ class StubsController < ApplicationController
 		@comment = @stub.comments.build(state_id: @stub.state_id)
 	end
 
+	def search 
+		authorize @project, :show?
+		if params[:search].present?
+			@stubs = @project.stubs.search(params[:search])
+		else
+			@stubs = @project.stubs
+		end
+		render "projects/show"
+	end
+
 	def edit 
 		authorize @stub, :update?
 	end

@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
 	def show
 		authorize @project, :show?
+		@stubs = @project.stubs
 	end
 
 	def edit
