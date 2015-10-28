@@ -2,20 +2,19 @@ class CommentsController < ApplicationController
 	before_action :set_stub
 
 	def create 
-		@comment = @stub.comments.build(sanitized_parameters)
-		@comment.author = current_user
+		@creator = CommentCreator.build(@stub.comments, current_user, sanitized_parameters)
+		authorize @creator.comment, :create?
 
-		authorize @comment, :create?
-	
-		if @comment.save
+		if @creator.save
 			flash[:notice] = "Comment has been created."
 			redirect_to [@stub.project, @stub]
 		else
-			flash.now[:aler] = "Comment has not been created."
-			@project = @stub.project
+			flash.now[:alert] = "Comment has not been created."
+			@project = @stub.project 
+			@comment = @creator.comment 
 			render "stubs/show"
 		end
-	end
+	end 
 
 	private 
 

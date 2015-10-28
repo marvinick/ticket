@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027180837) do
+ActiveRecord::Schema.define(version: 20151028180724) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file"
@@ -58,6 +58,11 @@ ActiveRecord::Schema.define(version: 20151027180837) do
     t.string  "name"
     t.string  "color"
     t.boolean "default", default: false
+  end
+
+  create_table "stub_watchers", id: false, force: :cascade do |t|
+    t.integer "stub_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "stubs", force: :cascade do |t|
