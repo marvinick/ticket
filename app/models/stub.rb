@@ -16,6 +16,7 @@ class Stub < ActiveRecord::Base
   #comes from searcher gem
   searcher do 
     label :tag, from: :tags, field: "name"
+    label :state, from: :state, field: "name"
   end
 
   def tag_names=(names)
