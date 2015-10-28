@@ -15,7 +15,7 @@ RSpec.describe CommentsController, type: :controller do
 			sign_in user
 		end
 
-		it "cannot transition a state by passing through stata_id" do 
+		it "cannot transition a state by passing through state_id" do 
 			post :create, { comment: { text: "Did I hack it??", state_id: state.id}, stub_id: stub.id }
 			stub.reload
 			expect(stub.state).to be_nil

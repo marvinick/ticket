@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20151028180724) do
     t.integer "user_id", null: false
   end
 
+  add_index "stub_watchers", ["stub_id", "user_id"], name: "index_stub_watchers_on_stub_id_and_user_id"
+  add_index "stub_watchers", ["user_id", "stub_id"], name: "index_stub_watchers_on_user_id_and_stub_id"
+
   create_table "stubs", force: :cascade do |t|
     t.string   "name"
     t.text     "desription"

@@ -1,5 +1,5 @@
 <%= @stub.name %> for <%= @project.name %> has been updated.
-<%= @comment.author %> wrote:
+<%= @comment.author.email %> wrote:
 <%= @comment.text %>
 
 You can view this stub online by going to: 
