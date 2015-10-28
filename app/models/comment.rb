@@ -17,6 +17,7 @@ class Comment < ActiveRecord::Base
   before_create :set_previous_state
   after_create :set_stub_state
   after_create :associate_tags_with_stub
+  after_create :author_watches_stub 
 
   private 
 
@@ -34,6 +35,12 @@ class Comment < ActiveRecord::Base
       tag_names.split.each do |name| 
         stub.tags << Tag.find_or_create_by(name: name)
       end
+    end
+  end
+
+  def author_watches_stub 
+    if author.present? && !stub.watchers.include?(author)
+      stub.watchers << author
     end
   end
 end
