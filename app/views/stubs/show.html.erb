@@ -37,6 +37,13 @@
 				<td><%= render @stub.tags, stub: @stub %></td>
 			</tr>
 		<% end %>
+		<tr id="watchers">
+			<th>Watchers:</th>
+			<td>
+				<%= toggle_watching_button(@stub) %><br />
+				<%= @stub.watchers.map(&:email).to_sentence %>
+			</td>
+		</tr>
 	</table>
 
 	<%= simple_format(@stub.desription) %>

@@ -1,4 +1,5 @@
 module StubsHelper
+	
 	def state_transition_for(comment)
 		if comment.previous_state != comment.state 
 			content_tag(:p) do 
@@ -10,5 +11,14 @@ module StubsHelper
 				value.html_safe
 			end
 		end
+	end
+
+	def toggle_watching_button(stub)
+		text = if stub.watchers.include?(current_user)
+			"Unwatch"
+		else
+			"Watch"
+		end
+		link_to text, watch_project_stub_path(stub.project, stub), class: text.parameterize, method: :post 
 	end
 end

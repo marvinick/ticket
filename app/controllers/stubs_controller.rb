@@ -1,6 +1,6 @@
 class StubsController < ApplicationController
 	before_action :set_project
-	before_action :set_stub, only: [:show, :edit, :update, :destroy]
+	before_action :set_stub, only: [:show, :edit, :update, :destroy, :watch]
 
 	def new
 		@stub = @project.stubs.build
@@ -43,6 +43,19 @@ class StubsController < ApplicationController
 		end
 		render "projects/show"
 	end
+
+	def watch 
+		authorize @stub, :show?
+		if @stub.watchers.exists?(current_user.id)
+			@stub.watchers.destroy(current_user)
+			flash[:notice] = "You are no longer watching this stub."
+		else
+			@stub.watchers << current_user
+			flash[:notice] = "You are now watching this stub."
+		end
+		redirect_to project_stub_path(@stub.project, @stub)
+	end
+
 
 	def edit 
 		authorize @stub, :update?
