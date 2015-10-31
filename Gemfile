@@ -7,6 +7,7 @@ gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', group: :production
+gem "rails_12factor", group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -32,6 +33,7 @@ gem 'pundit', "~> 0.3.0"
 gem 'carrierwave', "~> 0.10.0"
 gem "searcher", github: "radar/searcher"
 gem "fog", "~> 1.29.0"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
