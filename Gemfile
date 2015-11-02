@@ -10,6 +10,9 @@ gem 'pg', group: :production
 gem "rails_12factor", group: :production
 gem "puma", group: :production
 
+#
+gem "active_model_serializers", "~> 0.9.3"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
